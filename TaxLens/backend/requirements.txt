@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pandas
+openpyxl
+pymongo
+motor
+python-dotenv
+pydantic
+pydantic-settings
+python-multipart
+azure-ai-projects
+openai
+langchain
+httpx
+pytest
