@@ -1,0 +1,162 @@
+<section class="premium-dashboard">
+    <div class="dashboard-hero">
+        <div>
+            <p class="eyebrow">Uploaded Tax Analytics</p>
+            <h2>Executive tax command center</h2>
+            <p class="hero-copy">
+                Consolidated upload quality, effective-rate exposure, and scenario momentum across the tax planning workflow.
+            </p>
+        </div>
+
+        <div class="hero-score">
+            <span>Planning Coverage</span>
+            <strong>{{ planningCoverage | number:'1.0-0' }}%</strong>
+            <div class="coverage-track" aria-hidden="true">
+                <div [style.width.%]="planningCoverage"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="kpi-grid">
+        <article class="metric-card accent-cyan">
+            <div class="metric-label">
+                <span class="metric-icon">U</span>
+                Total Uploads
+            </div>
+            <strong>{{ totalUploads }}</strong>
+            <small>Tax workbooks processed</small>
+        </article>
+
+        <article class="metric-card accent-green">
+            <div class="metric-label">
+                <span class="metric-icon">E</span>
+                Avg Effective Rate
+            </div>
+            <strong>{{ avgEffectiveRate | number:'1.2-2' }}%</strong>
+            <small>{{ optimizedCount }} optimized entities</small>
+        </article>
+
+        <article class="metric-card accent-amber">
+            <div class="metric-label">
+                <span class="metric-icon">T</span>
+                Tax Liability
+            </div>
+            <strong>{{ formatCurrency(totalTaxLiability) }}</strong>
+            <small>{{ formatCurrency(totalTaxableIncome) }} taxable income</small>
+        </article>
+
+        <article class="metric-card accent-rose">
+            <div class="metric-label">
+                <span class="metric-icon">R</span>
+                Risk Watchlist
+            </div>
+            <strong>{{ highRiskCount }}</strong>
+            <small>Entities above 25% ETR</small>
+        </article>
+    </div>
+
+    <div class="analytics-grid">
+        <article class="panel activity-panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Workflow Volume</p>
+                    <h3>Platform activity</h3>
+                </div>
+                <span class="panel-badge">{{ totalComparisons + totalScenarios }} planning actions</span>
+            </div>
+
+            <div class="chart-container">
+                <canvas baseChart
+                    [data]="barChartData"
+                    [options]="barChartOptions"
+                    [type]="barChartType">
+                </canvas>
+            </div>
+        </article>
+
+        <article class="panel risk-panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Rate Quality</p>
+                    <h3>Effective-rate mix</h3>
+                </div>
+                <span class="panel-badge">{{ efficiencyRatio | number:'1.2-2' }}% liability yield</span>
+            </div>
+
+            <div class="donut-wrap">
+                <canvas baseChart
+                    [data]="riskChartData"
+                    [options]="doughnutChartOptions"
+                    [type]="doughnutChartType">
+                </canvas>
+                <div class="donut-center">
+                    <strong>{{ totalUploads }}</strong>
+                    <span>entities</span>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="detail-grid">
+        <article class="panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Recent Uploads</p>
+                    <h3>Company tax posture</h3>
+                </div>
+            </div>
+
+            <div class="upload-list" *ngIf="recentUploads.length; else emptyUploads">
+                <div class="upload-row" *ngFor="let upload of recentUploads">
+                    <div class="company-cell">
+                        <strong>{{ upload.company }}</strong>
+                        <span>{{ upload.jurisdiction }} / {{ upload.entityType }}</span>
+                    </div>
+                    <div>
+                        <small>ETR</small>
+                        <strong>{{ upload.effectiveRate | number:'1.2-2' }}%</strong>
+                    </div>
+                    <div>
+                        <small>Liability</small>
+                        <strong>{{ formatCurrency(upload.liability) }}</strong>
+                    </div>
+                    <div>
+                        <small>Taxable Income</small>
+                        <strong>{{ formatCurrency(upload.taxableIncome) }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #emptyUploads>
+                <div class="empty-state">
+                    Upload tax workbooks to populate company-level analytics.
+                </div>
+            </ng-template>
+        </article>
+
+        <article class="panel exposure-panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Jurisdiction Exposure</p>
+                    <h3>Top tax markets</h3>
+                </div>
+            </div>
+
+            <div class="exposure-list" *ngIf="jurisdictionExposure.length; else emptyExposure">
+                <div class="exposure-row" *ngFor="let exposure of jurisdictionExposure">
+                    <div>
+                        <strong>{{ exposure.name }}</strong>
+                        <span>{{ exposure.count }} uploads</span>
+                    </div>
+                    <strong>{{ formatCurrency(exposure.liability) }}</strong>
+                </div>
+            </div>
+
+            <ng-template #emptyExposure>
+                <div class="empty-state compact">
+                    Exposure ranking appears after uploads include jurisdiction data.
+                </div>
+            </ng-template>
+        </article>
+    </div>
+</section>

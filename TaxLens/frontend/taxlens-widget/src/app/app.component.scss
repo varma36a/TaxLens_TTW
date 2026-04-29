@@ -1,0 +1,26 @@
+:host {
+    display: block;
+}
+
+.app-shell {
+    display: grid;
+    gap: 2rem;
+}
+
+.hero-banner {
+    margin-bottom: 0;
+}
+
+.widget-grid {
+    row-gap: 1.75rem;
+}
+
+.widget-stack {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+}
+
+.widget-stack > * {
+    display: block;
+}

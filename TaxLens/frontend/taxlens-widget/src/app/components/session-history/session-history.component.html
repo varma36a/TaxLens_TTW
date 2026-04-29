@@ -1,0 +1,10 @@
+<div class="card-dark p-4">
+    <h3 class="section-title">Session History</h3>
+
+    <div class="session-scroll">
+        <div *ngFor="let session of sessions" class="session-item mb-3 p-3 rounded">
+            <h6 class="text-info">{{session.session_type}}</h6>
+            <small>{{session.timestamp}}</small>
+        </div>
+    </div>
+</div>

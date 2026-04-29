@@ -1,0 +1,18 @@
+<div class="card-dark p-4 mb-4">
+    <h3 class="section-title">What-If Scenario Simulator</h3>
+
+    <input class="form-control mb-2" placeholder="Company Name" [(ngModel)]="payload.company_name">
+    <input class="form-control mb-2" placeholder="New State Code" [(ngModel)]="payload.new_state_code">
+    <input class="form-control mb-2" placeholder="New Entity Type" [(ngModel)]="payload.new_entity_type">
+    <input class="form-control mb-2" type="number" placeholder="Additional Deductions"
+        [(ngModel)]="payload.additional_deductions">
+    <input class="form-control mb-3" type="number" placeholder="Additional Credits"
+        [(ngModel)]="payload.additional_credits">
+
+    <button class="btn-premium" (click)="runScenario()">Run Simulation</button>
+
+    <div *ngIf="result" class="mt-4">
+        <h5>Scenario Summary</h5>
+        <p>{{result.scenario_summary}}</p>
+    </div>
+</div>

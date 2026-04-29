@@ -1,0 +1,11 @@
+<div class="card-dark p-4 mb-4">
+    <h3 class="section-title">AI Tax Advisor</h3>
+
+    <textarea class="form-control mb-3" rows="3" placeholder="Ask tax questions..." [(ngModel)]="query"></textarea>
+    <button class="btn-premium" (click)="askAI()">Ask AI</button>
+
+    <div *ngIf="response" class="mt-4">
+        <h5>AI Response</h5>
+        <p>{{response}}</p>
+    </div>
+</div>

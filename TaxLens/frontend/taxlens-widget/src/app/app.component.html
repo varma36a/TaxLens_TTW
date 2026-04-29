@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid app-shell px-5 py-5">
+
+  <div class="hero-banner card-dark p-5 mb-5 text-center">
+    <h1 class="display-5 fw-bold">Corporate Tax Intelligence Platform</h1>
+    <p class="lead text-secondary">
+      Upload, compare, simulate, and optimize enterprise tax obligations using AI.
+    </p>
+  </div>
+
+  <app-tax-dashboard></app-tax-dashboard>
+
+  <div class="row g-4 widget-grid">
+    <div class="col-lg-6 d-grid gap-4 widget-stack">
+      <app-upload-widget></app-upload-widget>
+      <app-compare-widget></app-compare-widget>
+      <app-scenario-widget></app-scenario-widget>
+    </div>
+
+    <div class="col-lg-6 d-grid gap-4 widget-stack">
+      <app-chat-widget></app-chat-widget>
+    </div>
+  </div>
+
+</div>

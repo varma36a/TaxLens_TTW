@@ -1,0 +1,9 @@
+<div class="card-dark p-4 mb-4">
+    <h3 class="section-title">Upload Corporate Tax Data</h3>
+    <input type="file" class="form-control mb-3" (change)="onFileSelected($event)">
+    <button class="btn-premium" (click)="uploadFile()">Upload & Analyze</button>
+
+    <div *ngIf="uploadResult" class="mt-4">
+        <p><strong>Records Processed:</strong> {{uploadResult.records_processed}}</p>
+    </div>
+</div>
